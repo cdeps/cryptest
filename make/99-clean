@@ -1,0 +1,4 @@
+.PHONY: clean
+clean:
+	rm -f cryptotest
+	rm -f $(wildcard src/*.o)

@@ -1,0 +1,1 @@
+OBJ = $(patsubst src/%.c,src/%.o,$(wildcard src/*.c))

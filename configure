@@ -1,0 +1,30 @@
+#!bash -
+
+echo "Removing old makefile"
+rm -f Makefile
+
+echo "Building makefile"
+touch Makefile
+
+echo -n " - Detecting compiler... "
+FCC=$(command -v musl-gcc gcc 2>/dev/null | head -1)
+[[ ! -z $FCC ]] && {
+  echo $FCC
+  echo "CC="$FCC >> Makefile
+} || {
+  echo ""
+  echo "No C compiler detected!"
+  exit 1
+}
+
+
+echo " - C flags"
+echo "CFLAGS :=" >> Makefile
+command -v gcc &>/dev/null && echo "CFLAGS += -O3 -s" >> Makefile
+echo "CFLAGS += -I inc" >> Makefile
+
+echo " - Other variables"
+for i in $(ls make/0* | sort) ; do echo "   - "$i ; cat $i >> Makefile ; done
+
+echo " - Build targets"
+for i in $(ls make/9* | sort) ; do echo "   - "$i ; cat $i >> Makefile ; done

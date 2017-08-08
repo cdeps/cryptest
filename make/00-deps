@@ -1,0 +1,1 @@
+DEPS = $(wildcard inc/*.h)

@@ -20,7 +20,7 @@ FCC=$(command -v musl-gcc gcc 2>/dev/null | head -1)
 
 echo " - C flags"
 echo "CFLAGS :=" >> Makefile
-command -v gcc &>/dev/null && echo "CFLAGS += -O3 -s" >> Makefile
+command -v gcc &>/dev/null && echo "CFLAGS += -Os -s" >> Makefile
 echo "CFLAGS += -I inc" >> Makefile
 
 echo " - Other variables"

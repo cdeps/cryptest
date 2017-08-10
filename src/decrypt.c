@@ -25,13 +25,12 @@ int decrypt( unsigned int mult, unsigned int modulo, unsigned int padding ) {
   }
 
   while( 1 ) {
+
+    // Handle stdin
     c = fgetc(stdin);
     if(c==EOF) break;
-    seed *= mult;    
-    seed += c;
-    seed = seed % modulo;
-    obuf = obuf << 7;
-    obuf &= ~127;
+    seed = ((seed*mult)+c)%modulo;
+    obuf = (obuf%(1<<obuf_len))<<7;
     obuf |= seed%128;
     obuf_len += 7;
     if(obuf_len>=8) {
@@ -39,7 +38,7 @@ int decrypt( unsigned int mult, unsigned int modulo, unsigned int padding ) {
       obuf_len-=8;
     }
   }
-  
+
   return 0;
 }
 

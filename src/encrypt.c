@@ -42,34 +42,23 @@ int encrypt( unsigned int mult, unsigned int modulo, unsigned int padding ) {
       if ( (c=fgetc(stdin)) == EOF ) {
         flags &= ~2;
       } else {
+        ibuf = ibuf % ( 1 << ibuf_len );
         ibuf = ibuf << 8;
-        ibuf &= ~255;
         ibuf |= c;
         ibuf_len += 8;
       }
     }
 
-    // Pre-step seed
-    seed *= mult;
-
-    // Fetch input
-    c = ( (ibuf%(1<<ibuf_len)) << 7 ) >> ibuf_len;
+    // Fetch number to encode
+    c = ((ibuf<<7)>>ibuf_len)%128;
     ibuf_len -= 7;
 
-    // Try the fast method
-    e = ( ((seed+c)%modulo)%128 ) - c;
-
     // Feedback-based encoding
-    if( ( (seed+e)%modulo)%128 != c ) {
-      e = 0;
-      while( ( (seed+e)%modulo)%128 != c ) e++;
-    }
-    
-    // Output
-    fputc( e, stdout );
-
-    // Post-step seed
+    e = 0;
+    seed = seed * mult;
+    while( ((seed+e)%modulo)%128 != c ) e++;
     seed = (seed+e)%modulo;
+    fputc( e, stdout );
 
     // EOF detection
     if( ibuf_len <= 0 && !(flags&2) ) {

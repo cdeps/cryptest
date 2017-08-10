@@ -18,7 +18,6 @@ int usage( char *name ) {
                   "  -d  Decrypt stdin\n"
                   "  -e  Encrypt stdin\n"
                   "  -h  Show this usage\n"
-                  "  -s  Output sign for stdin\n"
                   "  -t  Set the multiplicand (default: 13)\n"
                   "  -m  Set the modulo (>=128) (default: 66066)\n"
                   "  -p  Set the padding in bytes (>=1) (default: 1)\n");
@@ -31,17 +30,17 @@ int main( int argc, char **argv ) {
 
   unsigned int mult = 13, modulo = 66066, padding = 1;
   char mode = 0;
+  unsigned long long vercode = 0;
+
+  setvbuf(stdout,NULL,_IONBF,0);
   
-  while((opt=getopt(argc,argv,"edsht:m:p:"))!=-1) {
+  while((opt=getopt(argc,argv,"deht:m:p:"))!=-1) {
     switch(opt) {
       case 'e':
         mode = 1;
         break;
       case 'd':
         mode = 2;
-        break;
-      case 's':
-        mode = 3;
         break;
       case 't':
         mult = atoui( optarg );
@@ -71,7 +70,6 @@ int main( int argc, char **argv ) {
   switch(mode) {
     case 1: return encrypt( mult, modulo, padding );
     case 2: return decrypt( mult, modulo, padding );
-    case 3: return sign( mult, modulo );
   }
 
   usage( *argv );

@@ -4,7 +4,7 @@ extern "C" {
 
 #include "base.h"
 
-int sign( unsigned int mult, unsigned int modulo, unsigned int padding ) {
+int sign( unsigned int mult, unsigned int modulo ) {
 
 }
 

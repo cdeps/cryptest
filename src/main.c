@@ -20,7 +20,7 @@ int usage( char *name ) {
                   "  -h  Show this usage\n"
                   "  -s  Output sign for stdin\n"
                   "  -t  Set the multiplicand (default: 13)\n"
-                  "  -m  Set the modulo (>=128) (default: 557)\n"
+                  "  -m  Set the modulo (>=128) (default: 66066)\n"
                   "  -p  Set the padding in bytes (>=1) (default: 1)\n");
   fprintf(stderr, "\n");
   return 0;
@@ -29,7 +29,7 @@ int usage( char *name ) {
 int main( int argc, char **argv ) {
   int opt;
 
-  unsigned int mult = 13, modulo = 557, padding = 1;
+  unsigned int mult = 13, modulo = 66066, padding = 1;
   char mode = 0;
   
   while((opt=getopt(argc,argv,"edsht:m:p:"))!=-1) {

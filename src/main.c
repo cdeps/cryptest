@@ -11,8 +11,7 @@ int usage( char *name ) {
   fprintf(stderr, "\n"
                   "Usage:\n"
                   "  %s -h\n"
-                  "  %s [-e|-d] [-t mul] [-m mod] [-p pad]\n"
-                  "  %s -s [-t mul] [-m mod]\n", name, name, name );
+                  "  %s [-e|-d] [-t mul] [-m mod] [-p pad]\n", name, name );
   fprintf(stderr, "\n"
                   "Options:\n"
                   "  -d  Decrypt stdin\n"

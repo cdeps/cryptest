@@ -20,4 +20,4 @@ make
 
 ## Usage
 
-Simple run `./cryptotest` to see the usage or look inside `src/main.c`
+Simple run `./cryptotest` to see the usage or look inside [`src/main.c`](https://github.com/cdeps/cryptest/blob/master/src/main.c)

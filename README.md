@@ -4,4 +4,4 @@ A self-made cryptography algorithm. This is an example implementation of the sch
 
 ---
 
-Keys are composed of 2 unsigned 32-bit integers, the multiplicand and the modulator. The only restriction on these numbers is that the modulator must be >=128, which results in ((2**32)-128)*(2**32) = 18446743523953737728 possible keys. Padding is forced to further randomize the output and has no structural restrictions.
+Keys are composed of 2 unsigned 32-bit integers, the multiplicand and the modulator. The only restriction on these numbers is that the modulator must be >=128, which results in ((2^32)-128)*(2^32) = 18446743523953737728 possible keys. Padding is forced to further randomize the output and has no structural restrictions.
